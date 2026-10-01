@@ -75,7 +75,7 @@ export const badgesList: Badge[] = [
     id: 'badge-executive-master',
     title: 'Executive Analytics Master',
     category: 'Executive Capstone',
-    description: 'Highest distinction awarded for cross-disciplinary mastery across all 87 modules of the Kapil Analytics Institute curriculum.',
+    description: 'Highest distinction awarded for cross-disciplinary mastery across all 87 modules of the Master Data Analytics With Kapil curriculum.',
     requiredModuleCount: 20,
     iconType: 'master',
     goldLevel: 'Diamond'

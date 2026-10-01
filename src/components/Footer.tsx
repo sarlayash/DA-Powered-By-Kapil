@@ -20,7 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCertificate, onOpenBadges 
               K
             </div>
             <span className="font-luxury font-bold text-white text-base tracking-tight">
-              KAPIL ANALYTICS & AI MASTERCLASS
+              MASTER DATA ANALYTICS WITH KAPIL
             </span>
           </div>
           <p className="text-slate-400 text-xs leading-relaxed max-w-lg">

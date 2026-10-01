@@ -23,11 +23,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAuth, onOpenBadges, onOpen
             </div>
           </div>
           <div>
-            <span className="font-luxury font-bold text-lg md:text-xl tracking-tight text-white group-hover:text-[#D4AF37] transition-colors">
-              KAPIL ANALYTICS
+            <span className="font-luxury font-bold text-base md:text-lg tracking-tight text-white group-hover:text-[#D4AF37] transition-colors">
+              MASTER DATA ANALYTICS WITH KAPIL
             </span>
             <span className="hidden sm:inline-block ml-2 text-[10px] uppercase tracking-widest px-2 py-0.5 rounded border border-[#D4AF37]/30 text-[#D4AF37] bg-[#D4AF37]/5">
-              87-Module Masterclass
+              87 Modules
             </span>
           </div>
         </a>

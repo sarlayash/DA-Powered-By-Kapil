@@ -40,7 +40,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
             </div>
             <div>
               <h3 className="font-luxury font-bold text-base text-white">Learner Authentication</h3>
-              <p className="text-[11px] text-slate-400">Kapil Analytics & AI Institute</p>
+              <p className="text-[11px] text-slate-400">Master Data Analytics With Kapil</p>
             </div>
           </div>
           <button

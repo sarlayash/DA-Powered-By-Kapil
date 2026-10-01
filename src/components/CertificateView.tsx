@@ -87,7 +87,7 @@ export const CertificateView: React.FC = () => {
           {/* Institution Header */}
           <div className="space-y-1">
             <h3 className="font-luxury font-bold text-sm md:text-base text-[#D4AF37] tracking-[0.25em] uppercase">
-              Kapil Analytics & Artificial Intelligence Institute
+              Master Data Analytics With Kapil
             </h3>
             <p className="text-[10px] md:text-xs text-slate-400 tracking-[0.15em] uppercase">
               Executive Fellowship Program & Curriculum Board
@@ -142,7 +142,7 @@ export const CertificateView: React.FC = () => {
             <div>
               <div className="font-luxury font-bold text-sm text-slate-200">Kapil Narula</div>
               <div className="text-[11px] text-slate-400">Program Lead & Chief AI Architect</div>
-              <div className="text-[10px] text-slate-500">Kapil Analytics Institute</div>
+              <div className="text-[10px] text-slate-500">Master Data Analytics With Kapil</div>
             </div>
             <div>
               <div className="font-luxury font-bold text-sm text-slate-200">Dr. Marcus Vance, Ph.D.</div>
@@ -157,7 +157,7 @@ export const CertificateView: React.FC = () => {
               CREDENTIAL ID: KAPIL-CERT-{user.id.slice(-6).toUpperCase()}-2026 · CRYPTOGRAPHICALLY VERIFIED
             </div>
             <div>
-              © 2026 <span className="text-slate-300 font-semibold">Powered By Kapil</span>. All rights reserved. Issued under Kapil Analytics Framework.
+              © 2026 <span className="text-slate-300 font-semibold">Powered By Kapil</span>. All rights reserved. Issued under Master Data Analytics With Kapil Framework.
             </div>
           </div>
         </div>

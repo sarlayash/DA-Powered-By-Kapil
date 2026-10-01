@@ -31,7 +31,7 @@ export const BadgesModal: React.FC<BadgesModalProps> = ({ isOpen, onClose }) => 
             <div>
               <h2 className="text-xl font-bold font-luxury text-white">Competency Medallions & Badges</h2>
               <p className="text-xs text-slate-400">
-                Official accreditation issued under the Kapil Analytics Institute · Downloadable in High-Res PNG & Vector PDF
+                Official accreditation issued under Master Data Analytics With Kapil · Downloadable in High-Res PNG & Vector PDF
               </p>
             </div>
           </div>

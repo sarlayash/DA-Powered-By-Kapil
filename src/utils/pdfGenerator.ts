@@ -60,7 +60,7 @@ export async function downloadCertificatePNG(user: UserProfile, completionPercen
   ctx.fillStyle = '#D4AF37';
   ctx.font = '600 36px "Cinzel", Georgia, serif';
   ctx.letterSpacing = '6px';
-  ctx.fillText('KAPIL ANALYTICS & ARTIFICIAL INTELLIGENCE INSTITUTE', width / 2, 220);
+  ctx.fillText('MASTER DATA ANALYTICS WITH KAPIL', width / 2, 220);
 
   // Subtitle
   ctx.fillStyle = '#A0AEC0';
@@ -180,7 +180,7 @@ export async function downloadCertificatePNG(user: UserProfile, completionPercen
   ctx.letterSpacing = '1px';
   ctx.fillText('Program Lead & Chief AI Architect', leftSigX, sigY + 38);
   ctx.font = '400 18px "Plus Jakarta Sans", sans-serif';
-  ctx.fillText('Kapil Analytics Institute', leftSigX, sigY + 68);
+  ctx.fillText('Master Data Analytics With Kapil', leftSigX, sigY + 68);
 
   // Right Signature
   ctx.beginPath();
@@ -205,12 +205,12 @@ export async function downloadCertificatePNG(user: UserProfile, completionPercen
 
   ctx.fillStyle = '#64748B';
   ctx.font = '400 20px "Plus Jakarta Sans", sans-serif';
-  ctx.fillText('© 2026 Powered By Kapil. All rights reserved. Registered under Kapil Analytics Curriculum Framework.', width / 2, 1515);
+  ctx.fillText('© 2026 Powered By Kapil. All rights reserved. Registered under Master Data Analytics With Kapil Framework.', width / 2, 1515);
 
   // Download Trigger
   const dataUrl = canvas.toDataURL('image/png', 1.0);
   const link = document.createElement('a');
-  link.download = `Kapil_Analytics_Certificate_${user.name.replace(/\s+/g, '_')}.png`;
+  link.download = `Master_Data_Analytics_Certificate_${user.name.replace(/\s+/g, '_')}.png`;
   link.href = dataUrl;
   link.click();
 }
@@ -246,7 +246,7 @@ export function downloadCertificatePDF(user: UserProfile, completionPercentage: 
   doc.setFont('times', 'bold');
   doc.setFontSize(14);
   doc.setTextColor(212, 175, 55);
-  doc.text('KAPIL ANALYTICS & ARTIFICIAL INTELLIGENCE INSTITUTE', pageWidth / 2, 30, { align: 'center' });
+  doc.text('MASTER DATA ANALYTICS WITH KAPIL', pageWidth / 2, 30, { align: 'center' });
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(9);
@@ -329,7 +329,7 @@ export function downloadCertificatePDF(user: UserProfile, completionPercentage: 
   doc.setFontSize(8);
   doc.setTextColor(148, 163, 184);
   doc.text('Program Lead & Chief AI Architect', leftX, sigLineY + 5, { align: 'center' });
-  doc.text('Kapil Analytics Institute', leftX, sigLineY + 9, { align: 'center' });
+  doc.text('Master Data Analytics With Kapil', leftX, sigLineY + 9, { align: 'center' });
 
   // Academic Director
   doc.line(rightX - 25, sigLineY, rightX + 25, sigLineY);
@@ -496,7 +496,7 @@ export function downloadBadgePDF(badge: Badge, userName: string): void {
   doc.setFont('times', 'bold');
   doc.setFontSize(10);
   doc.setTextColor(212, 175, 55);
-  doc.text('KAPIL ANALYTICS INSTITUTE', w / 2, 22, { align: 'center' });
+  doc.text('MASTER DATA ANALYTICS WITH KAPIL', w / 2, 22, { align: 'center' });
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7.5);
