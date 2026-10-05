@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
+import { allModules } from '../data/modulesData';
 import { Award, CheckCircle2, Flame, LogIn, LogOut, ShieldCheck, User } from 'lucide-react';
 
 interface HeaderProps {
@@ -11,6 +12,8 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onOpenAuth, onOpenBadges, onOpenCertificate }) => {
   const { user, logout, completionPercentage, earnedBadgesCount, loginAsDemoUser } = useAuth();
   const completedCount = user?.completedModuleIds.length || 0;
+  const nextIncomplete = allModules.find(m => !(user?.completedModuleIds || []).includes(m.id)) || allModules[0];
+  const currentDay = nextIncomplete ? nextIncomplete.day : 'Day 1';
 
   return (
     <header className="h-18 bg-[#090A0F]/95 backdrop-blur-md border-b border-[#2A261A] sticky top-0 z-40 px-6 flex items-center justify-between">
@@ -61,8 +64,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAuth, onOpenBadges, onOpen
 
         <div className="flex items-center gap-1 text-amber-400">
           <Flame className="w-4 h-4 text-amber-500 fill-amber-500" />
-          <span className="font-semibold text-slate-200">Day 6</span>
-          <span className="text-slate-400">Streak</span>
+          <span className="font-semibold text-slate-200">{currentDay}</span>
+          <span className="text-slate-400">Active</span>
         </div>
       </div>
 

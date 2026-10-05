@@ -9,6 +9,7 @@ interface AuthContextType {
   loginWithGoogle: (email?: string, name?: string) => void;
   loginAsDemoUser: () => void;
   logout: () => void;
+  resetToZero: () => void;
   markModuleComplete: (moduleId: number, codeUsed?: string) => void;
   toggleBookmark: (moduleId: number) => void;
   isModuleCompleted: (moduleId: number) => boolean;
@@ -20,19 +21,20 @@ interface AuthContextType {
   setAllCompletedForDemo: () => void;
 }
 
-const STORAGE_KEY = 'kapil_analytics_auth_user_v2';
+const STORAGE_KEY = 'kapil_analytics_learner_progress_v4';
 
-const DEMO_USER_PROFILE: UserProfile = {
-  id: 'usr-demo-kapil-2026',
+// Real authentic learner starting from ZERO on Day 1
+export const FRESH_LEARNER_PROFILE: UserProfile = {
+  id: 'usr-kapil-learner',
   email: 'kapilnarula27july@gmail.com',
-  name: 'Kapil Narula (Demo Executive)',
-  avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-  isDemoUser: true,
-  completedModuleIds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 21, 22, 25, 26, 27, 44, 47, 48, 57, 58, 72, 73, 74, 83, 84, 85],
-  earnedBadgeIds: ['badge-python-ai', 'badge-sql-architect', 'badge-ml-ensemble', 'badge-genai-agentic'],
-  bookmarkedModuleIds: [6, 15, 27, 48, 74, 85],
-  joinedDate: '2026-09-15',
-  lastActive: '2026-10-01',
+  name: 'Kapil Narula',
+  avatarUrl: 'https://api.dicebear.com/7.x/initials/svg?seed=Kapil+Narula&backgroundColor=090a0f&textColor=d4af37',
+  isDemoUser: false,
+  completedModuleIds: [], // Strictly 0 completed modules
+  earnedBadgeIds: [],     // Strictly 0 badges earned
+  bookmarkedModuleIds: [],// Strictly 0 bookmarks
+  joinedDate: new Date().toISOString().split('T')[0],
+  lastActive: new Date().toISOString().split('T')[0],
   codeSubmissions: {}
 };
 
@@ -43,13 +45,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        return JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        if (parsed && Array.isArray(parsed.completedModuleIds)) {
+          return parsed;
+        }
       }
     } catch (e) {
       console.error('Error loading stored user profile:', e);
     }
-    // Default to demo user so reviewer can explore all features immediately
-    return DEMO_USER_PROFILE;
+    // Learner starts cleanly from zero on Day 1
+    return FRESH_LEARNER_PROFILE;
   });
 
   useEffect(() => {
@@ -74,8 +79,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const loginWithGoogle = (customEmail?: string, customName?: string) => {
-    const email = customEmail || 'learner@gmail.com';
-    const name = customName || (email.split('@')[0].replace('.', ' ').toUpperCase());
+    const email = customEmail || 'kapilnarula27july@gmail.com';
+    const name = customName || 'Kapil Narula';
     const newUser: UserProfile = {
       id: `usr-google-${Date.now()}`,
       email,
@@ -94,8 +99,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const loginAsDemoUser = () => {
-    setUser(DEMO_USER_PROFILE);
+    setUser({
+      ...FRESH_LEARNER_PROFILE,
+      id: 'usr-demo-kapil',
+      name: 'Kapil Narula',
+      email: 'kapilnarula27july@gmail.com',
+      isDemoUser: true,
+      completedModuleIds: [],
+      earnedBadgeIds: [],
+      bookmarkedModuleIds: []
+    });
     triggerCelebration();
+  };
+
+  const resetToZero = () => {
+    setUser(prev => ({
+      id: prev?.id || FRESH_LEARNER_PROFILE.id,
+      email: prev?.email || FRESH_LEARNER_PROFILE.email,
+      name: prev?.name || FRESH_LEARNER_PROFILE.name,
+      avatarUrl: prev?.avatarUrl || FRESH_LEARNER_PROFILE.avatarUrl,
+      isDemoUser: prev?.isDemoUser || false,
+      completedModuleIds: [],
+      earnedBadgeIds: [],
+      bookmarkedModuleIds: [],
+      joinedDate: prev?.joinedDate || new Date().toISOString().split('T')[0],
+      lastActive: new Date().toISOString().split('T')[0],
+      codeSubmissions: {}
+    }));
   };
 
   const logout = () => {
@@ -196,6 +226,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loginWithGoogle,
         loginAsDemoUser,
         logout,
+        resetToZero,
         markModuleComplete,
         toggleBookmark,
         isModuleCompleted,

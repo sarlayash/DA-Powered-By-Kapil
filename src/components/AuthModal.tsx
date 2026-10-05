@@ -8,7 +8,7 @@ interface AuthModalProps {
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
-  const { user, loginWithGoogle, loginAsDemoUser, logout } = useAuth();
+  const { user, loginWithGoogle, loginAsDemoUser, logout, resetToZero } = useAuth();
   const [googleEmail, setGoogleEmail] = useState('');
   const [learnerName, setLearnerName] = useState('');
 
@@ -75,32 +75,43 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   <div className="text-[11px] text-slate-400">{user.email}</div>
                 </div>
               </div>
-              <button
-                onClick={logout}
-                className="text-xs text-red-400 hover:underline cursor-pointer"
-              >
-                Sign Out
-              </button>
+              <div className="flex items-center gap-2">
+                {user.completedModuleIds.length > 0 && (
+                  <button
+                    onClick={resetToZero}
+                    className="text-xs text-[#FFDF73] hover:underline cursor-pointer"
+                    title="Reset all completed modules to 0"
+                  >
+                    Reset to Day 1
+                  </button>
+                )}
+                <button
+                  onClick={logout}
+                  className="text-xs text-red-400 hover:underline cursor-pointer"
+                >
+                  Sign Out
+                </button>
+              </div>
             </div>
           )}
 
-          {/* Quick Demo User Option */}
+          {/* Quick Learner Start Option */}
           <div className="p-4 rounded-xl bg-gradient-to-r from-[#171B28] to-[#121520] border border-[#D4AF37]/30 space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-[#FFDF73] flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-                One-Click Demo Executive User
+                Start as Kapil Narula
               </span>
-              <span className="text-[10px] text-emerald-400 font-mono">Recommended</span>
+              <span className="text-[10px] text-emerald-400 font-mono">Day 1 Kickoff</span>
             </div>
             <p className="text-[11px] text-slate-300">
-              Instantly test the curriculum, interactive labs, earned badges, and certificate download as Kapil Narula (Lead AI Architect).
+              Personalized profile starting from zero (0 of 87 modules completed) on Day 1. Complete each applied lab to unlock badges.
             </p>
             <button
               onClick={handleDemoSelect}
               className="w-full mt-2 py-2 px-3 rounded-lg bg-gradient-to-r from-[#FFDF73] via-[#D4AF37] to-[#B89225] text-black text-xs font-bold hover:brightness-110 transition-all shadow cursor-pointer"
             >
-              Sign In as Demo Executive (Kapil Learner)
+              Start From Day 1 (0 Modules Done)
             </button>
           </div>
 

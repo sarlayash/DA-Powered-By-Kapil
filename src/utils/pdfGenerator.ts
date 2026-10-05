@@ -190,12 +190,12 @@ export async function downloadCertificatePNG(user: UserProfile, completionPercen
 
   ctx.fillStyle = '#E2E8F0';
   ctx.font = '700 28px "Cinzel", Georgia, serif';
-  ctx.fillText('Dr. Marcus Vance, Ph.D.', rightSigX, sigY - 20);
+  ctx.fillText('Academic Advisory Board', rightSigX, sigY - 20);
   ctx.fillStyle = '#94A3B8';
   ctx.font = '400 22px "Plus Jakarta Sans", sans-serif';
-  ctx.fillText('Director of Enterprise Curriculum', rightSigX, sigY + 38);
+  ctx.fillText('Curriculum Standards & Verification', rightSigX, sigY + 38);
   ctx.font = '400 18px "Plus Jakarta Sans", sans-serif';
-  ctx.fillText('Global Data Science Council', rightSigX, sigY + 68);
+  ctx.fillText('Executive Data Analytics Institute', rightSigX, sigY + 68);
 
   // Footer Metadata and Mandatory Copyright
   ctx.fillStyle = '#D4AF37';
@@ -337,13 +337,13 @@ export function downloadCertificatePDF(user: UserProfile, completionPercentage: 
   doc.setFont('times', 'bold');
   doc.setFontSize(11);
   doc.setTextColor(226, 232, 240);
-  doc.text('Dr. Marcus Vance, Ph.D.', rightX, sigLineY - 3, { align: 'center' });
+  doc.text('Academic Advisory Board', rightX, sigLineY - 3, { align: 'center' });
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
   doc.setTextColor(148, 163, 184);
-  doc.text('Director of Enterprise Curriculum', rightX, sigLineY + 5, { align: 'center' });
-  doc.text('Global Data Science Council', rightX, sigLineY + 9, { align: 'center' });
+  doc.text('Curriculum Standards & Verification', rightX, sigLineY + 5, { align: 'center' });
+  doc.text('Executive Data Analytics Institute', rightX, sigLineY + 9, { align: 'center' });
 
   // Footer & Mandatory Copyright
   doc.setFont('helvetica', 'bold');

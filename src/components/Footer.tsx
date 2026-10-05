@@ -8,7 +8,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenCertificate, onOpenBadges }) => {
-  const { user, loginAsDemoUser, setAllCompletedForDemo } = useAuth();
+  const { user, loginAsDemoUser, setAllCompletedForDemo, resetToZero } = useAuth();
 
   return (
     <footer className="bg-[#08090E] border-t border-[#2A261A] text-slate-400 text-xs py-8 px-6 lg:px-12 mt-auto">
@@ -69,18 +69,30 @@ export const Footer: React.FC<FooterProps> = ({ onOpenCertificate, onOpenBadges 
               onClick={loginAsDemoUser}
               className="w-full text-left px-2.5 py-1.5 rounded bg-[#141722] hover:bg-[#1A1E2C] border border-[#262B3D] text-slate-300 text-xs flex items-center justify-between transition-colors cursor-pointer"
             >
-              <span>Load Demo Executive Profile</span>
-              <span className="text-[10px] text-[#D4AF37] font-mono">Instant</span>
+              <span>Load Profile (Kapil Narula)</span>
+              <span className="text-[10px] text-[#D4AF37] font-mono">Day 1</span>
+            </button>
+
+            <button
+              onClick={resetToZero}
+              className="w-full text-left px-2.5 py-1.5 rounded bg-[#141722] hover:bg-[#1A1E2C] border border-[#262B3D] text-slate-300 text-xs flex items-center justify-between transition-colors cursor-pointer"
+              title="Reset progress to zero modules completed starting on Day 1"
+            >
+              <span className="flex items-center gap-1">
+                <RefreshCw className="w-3.5 h-3.5 text-slate-400" />
+                Reset Progress to Day 1
+              </span>
+              <span className="text-[10px] text-slate-500 font-mono">0%</span>
             </button>
 
             <button
               onClick={setAllCompletedForDemo}
               className="w-full text-left px-2.5 py-1.5 rounded bg-[#141722] hover:bg-[#1A1E2C] border border-[#262B3D] text-[#FFDF73] text-xs flex items-center justify-between transition-colors cursor-pointer"
-              title="Instantly mark all 87 modules completed to test full certificate & badge downloads"
+              title="Mark all 87 modules completed to test full certificate & badge exports"
             >
               <span className="flex items-center gap-1">
                 <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
-                Complete All 87 (Test Grad)
+                Test 100% Graduation
               </span>
               <span className="text-[10px] text-emerald-400 font-mono">100%</span>
             </button>

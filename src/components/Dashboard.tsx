@@ -35,11 +35,12 @@ export const Dashboard: React.FC<DashboardProps> = ({
   onOpenBadges,
   onOpenCertificate
 }) => {
-  const { user, completionPercentage, earnedBadgesCount } = useAuth();
+  const { user, completionPercentage, earnedBadgesCount, resetToZero } = useAuth();
   const completedIds = user?.completedModuleIds || [];
 
-  // Find next incomplete module
+  // Find next incomplete module (starts at Module 1 on Day 1 for fresh learners)
   const nextIncompleteModule = allModules.find(m => !completedIds.includes(m.id)) || allModules[0];
+  const currentDay = nextIncompleteModule ? nextIncompleteModule.day : 'Day 1';
 
   // Track Progress counts
   const week1Count = allModules.filter(m => m.week === 'Week 1').length; // 27
@@ -93,8 +94,12 @@ export const Dashboard: React.FC<DashboardProps> = ({
           {/* Action CTA Card */}
           <div className="p-5 rounded-xl bg-[#181C2A] border border-[#D4AF37]/40 lg:w-80 shrink-0 space-y-3 shadow-lg">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-slate-400">Next Recommended Lab:</span>
-              <span className="text-[10px] text-[#FFDF73] font-mono font-semibold">Module {nextIncompleteModule.id}</span>
+              <span className="text-slate-400">
+                {completedIds.length === 0 ? 'Kickstart Curriculum:' : 'Next Recommended Lab:'}
+              </span>
+              <span className="text-[10px] text-[#FFDF73] font-mono font-semibold">
+                {nextIncompleteModule.day} · Module {nextIncompleteModule.id}
+              </span>
             </div>
 
             <div className="font-luxury font-bold text-sm text-white line-clamp-1">
@@ -110,13 +115,13 @@ export const Dashboard: React.FC<DashboardProps> = ({
               className="w-full py-2 px-3 rounded-lg bg-gradient-to-r from-[#FFDF73] via-[#D4AF37] to-[#B89225] hover:brightness-110 text-black text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md"
             >
               <Play className="w-3.5 h-3.5 fill-current" />
-              <span>Launch Lab #{nextIncompleteModule.id}</span>
+              <span>{completedIds.length === 0 ? 'Start Day 1 (Launch Lab #1)' : `Launch Lab #${nextIncompleteModule.id}`}</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Metrics Row (Anti-Slop Clean Typography) */}
+      {/* Metrics Row (Strictly Real Learner Progress - No Fake Statistics) */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="p-4 rounded-xl bg-[#0F121C] border border-[#2A261A] space-y-1">
           <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Curriculum Progress</div>
@@ -146,12 +151,14 @@ export const Dashboard: React.FC<DashboardProps> = ({
         </div>
 
         <div className="p-4 rounded-xl bg-[#0F121C] border border-[#2A261A] space-y-1">
-          <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Active Learning Streak</div>
+          <div className="text-[11px] text-slate-400 font-medium uppercase tracking-wider">Curriculum Schedule</div>
           <div className="text-2xl font-bold font-mono text-amber-400 flex items-baseline gap-1.5">
-            <span>Day 6</span>
-            <span className="text-xs text-slate-500 font-normal">Consistent</span>
+            <span>{currentDay}</span>
+            <span className="text-xs text-slate-400 font-normal">Active</span>
           </div>
-          <div className="text-[11px] text-slate-400">Top 5% Cohort Velocity</div>
+          <div className="text-[11px] text-slate-400">
+            {completedIds.length === 0 ? 'Starts from Zero · Day 1' : `Next: Module ${nextIncompleteModule.id}`}
+          </div>
         </div>
       </div>
 
@@ -349,6 +356,18 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
         </button>
       </div>
+
+      {completedIds.length > 0 && (
+        <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#12141F] border border-[#2A261A] text-xs text-slate-400">
+          <span>Currently tracking <strong className="text-white font-mono">{completedIds.length}</strong> completed modules. Want to restart fresh?</span>
+          <button
+            onClick={resetToZero}
+            className="px-3 py-1.5 rounded-md bg-[#1E2234] hover:bg-[#262B40] text-[#FFDF73] border border-[#D4AF37]/30 font-medium transition-colors cursor-pointer text-xs"
+          >
+            Reset Progress to Day 1 (0 Modules)
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -145,9 +145,9 @@ export const CertificateView: React.FC = () => {
               <div className="text-[10px] text-slate-500">Master Data Analytics With Kapil</div>
             </div>
             <div>
-              <div className="font-luxury font-bold text-sm text-slate-200">Dr. Marcus Vance, Ph.D.</div>
-              <div className="text-[11px] text-slate-400">Director of Enterprise Curriculum</div>
-              <div className="text-[10px] text-slate-500">Global Data Science Council</div>
+              <div className="font-luxury font-bold text-sm text-slate-200">Academic Advisory Board</div>
+              <div className="text-[11px] text-slate-400">Curriculum Standards & Verification</div>
+              <div className="text-[10px] text-slate-500">Executive Data Analytics Institute</div>
             </div>
           </div>
 
