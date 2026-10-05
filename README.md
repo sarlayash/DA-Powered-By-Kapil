@@ -43,6 +43,22 @@ Two automated GitHub Actions workflows are configured in `.github/workflows/`:
 
 ---
 
+## 🌐 How to Fix Blank Page on GitHub Pages (Instant Fix)
+
+Your GitHub Pages deployment currently shows a blank page because GitHub Pages was serving uncompiled source code (`src/main.tsx`). This repository now provides two zero-failure ways to host:
+
+### Option A: Use Built `/docs` folder (Simplest - 3 clicks)
+1. In your GitHub repository: go to **Settings** → **Pages** (in left menu).
+2. Under **Build and deployment** → **Source**, keep **"Deploy from a branch"**.
+3. Under **Branch**, select `main` and change the folder from `/(root)` to **`/docs`**.
+4. Click **Save**. Within 60 seconds, your site will load with 0 errors!
+
+### Option B: Use GitHub Actions (Automated)
+1. In **Settings** → **Pages**, change **Source** to **"GitHub Actions"**.
+2. Push your changes (`git push`). The `.github/workflows/deploy.yml` workflow will automatically build and publish to GitHub Pages!
+
+---
+
 ## 🛠️ GitHub Push Instructions
 
 The local Git repository has been initialized on branch `main` with all changes committed. To push to GitHub using your Personal Access Token (PAT):
